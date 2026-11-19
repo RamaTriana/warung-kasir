@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Warung POS — Design tokens
+   Satu-satunya sumber warna, tipografi, jarak, radius, dan elevasi.
+   Nilai di sini sama persis dengan DESIGN_SYSTEM.md. Jangan menulis warna
+   heksadesimal di file lain — pakai var(--…).
+   ========================================================================== */
+
+@font-face { font-family: "Fira Sans"; src: url("../assets/fonts/fira-400.woff") format("woff"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Fira Sans"; src: url("../assets/fonts/fira-500.woff") format("woff"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "Fira Sans"; src: url("../assets/fonts/fira-600.woff") format("woff"); font-weight: 600; font-display: swap; }
+@font-face { font-family: "Bitter"; src: url("../assets/fonts/bitter.woff") format("woff"); font-weight: 100 900; font-display: swap; }
+
+:root {
+  /* ---- Palet dasar (primitive) ---------------------------------------- */
+  --paper-50:  #FFFDF8;
+  --paper-100: #F6F1E7;
+  --paper-200: #EDE6D8;
+  --paper-300: #DDD3C1;
+  --paper-400: #BFB39E;
+  --ink-900:   #1D1B17;
+  --ink-700:   #4E493F;
+  --ink-500:   #6B6458;
+
+  --nila-50:  #E8EAF5;
+  --nila-100: #CDD2EC;
+  --nila-600: #2E3A87;
+  --nila-700: #263077;
+  --nila-800: #1D2563;
+
+  --kunyit-50:  #FCF1D6;
+  --kunyit-400: #E3A51D;
+  --kunyit-800: #7A5300;
+
+  --hijau-50:  #E1F1E7;
+  --hijau-700: #1C6E45;
+  --oranye-50: #FBEBD8;
+  --oranye-700:#9A4F04;
+  --merah-50:  #F8E1DE;
+  --merah-700: #A8231B;
+  --biru-50:   #E0ECF5;
+  --biru-700:  #1F5A86;
+
+  /* ---- Semantic tokens ------------------------------------------------- */
+  --color-bg:               var(--paper-100);
+  --color-surface:          var(--paper-50);
+  --color-surface-sunken:   var(--paper-200);
+  --color-surface-elevated: var(--paper-50);
+  --color-border:           var(--paper-300);
+  --color-border-strong:    var(--paper-400);
+
+  --color-text:             var(--ink-900);
+  --color-text-secondary:   var(--ink-700);
+  --color-text-muted:       var(--ink-500);
+  --color-text-on-primary:  #FFFFFF;
+
+  --color-primary:          var(--nila-600);
+  --color-primary-hover:    var(--nila-700);
+  --color-primary-pressed:  var(--nila-800);
+  --color-primary-tint:     var(--nila-50);
+  --color-focus:            var(--nila-600);
+
+  --color-success:          var(--hijau-700);
+  --color-success-tint:     var(--hijau-50);
+  --color-warning:          var(--oranye-700);
+  --color-warning-tint:     var(--oranye-50);
+  --color-danger:           var(--merah-700);
+  --color-danger-tint:      var(--merah-50);
+  --color-info:             var(--biru-700);
+  --color-info-tint:        var(--biru-50);
+
+  /* Identitas lapak & shift */
+  --color-lapak-nasi:       var(--kunyit-400);
+  --color-lapak-nasi-tint:  var(--kunyit-50);
+  --color-lapak-nasi-text:  var(--kunyit-800);
+  --color-lapak-warung:     var(--nila-600);
+  --color-lapak-warung-tint:var(--nila-50);
+  --color-lapak-warung-text:var(--nila-700);
+  --color-shift-pagi:       var(--kunyit-400);
+  --color-shift-siang:      var(--nila-600);
+
+  --color-scrim:            rgba(29, 27, 23, 0.48);
+
+  /* ---- Tipografi ------------------------------------------------------- */
+  --font-ui:  "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-num: "Bitter", Georgia, "Times New Roman", serif;
+
+  --text-display-num: 600 2.5rem/1.05 var(--font-num);   /* 40/42  total, kembalian */
+  --text-num-lg:      600 1.75rem/1.15 var(--font-num);  /* 28/32  ringkasan */
+  --text-num-md:      600 1.25rem/1.2 var(--font-num);   /* 20/24  harga di tile */
+  --text-num-sm:      600 1rem/1.25 var(--font-num);     /* 16/20  harga di list */
+  --text-title:       600 1.375rem/1.27 var(--font-ui);  /* 22/28 */
+  --text-heading:     600 1.125rem/1.33 var(--font-ui);  /* 18/24 */
+  --text-body:        400 1rem/1.5 var(--font-ui);       /* 16/24 */
+  --text-body-strong: 500 1rem/1.5 var(--font-ui);
+  --text-label:       500 0.875rem/1.43 var(--font-ui);  /* 14/20 */
+  --text-caption:     400 0.8125rem/1.38 var(--font-ui); /* 13/18 */
+  --text-button:      600 1.0625rem/1.2 var(--font-ui);  /* 17/20 */
+  --text-overline:    600 0.75rem/1.33 var(--font-ui);   /* 12/16, huruf kapital */
+
+  /* ---- Jarak (kelipatan 4) -------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 32px;
+  --space-8: 40px;
+
+  /* ---- Radius ---------------------------------------------------------- */
+  --radius-sm: 6px;    /* badge, chip, tile kecil */
+  --radius-md: 10px;   /* tombol, input, tile produk */
+  --radius-lg: 16px;   /* sudut atas bottom sheet */
+
+  /* ---- Elevasi: hanya untuk lapisan yang melayang ---------------------- */
+  --shadow-sheet:  0 -8px 24px rgba(29, 27, 23, 0.14);
+  --shadow-float:  0 4px 16px rgba(29, 27, 23, 0.18);
+  --border-hair:   1px solid var(--color-border);
+
+  /* ---- Ukuran sentuh & layout ----------------------------------------- */
+  --tap-min: 48px;
+  --tap-primary: 56px;
+  --header-h: 56px;
+  --nav-h: 64px;
+  --content-max: 560px;
+
+  /* ---- Gerak ----------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur-base: 0ms; }
+}

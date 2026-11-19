@@ -1,0 +1,14 @@
+{
+  "name": "warung-pos",
+  "private": true,
+  "type": "module",
+  "description": "Kasir PWA untuk warung keluarga. Tanpa build, tanpa dependensi.",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "mock-sheets": "node tests/mock-apps-script.mjs",
+    "test:e2e": "python3 tests/e2e_flow.py",
+    "test:sync": "python3 tests/sync_two_phones.py",
+    "test:overflow": "python3 tests/overflow_products.py",
+    "emulator": "node tests/gas-emulator.mjs"
+  }
+}

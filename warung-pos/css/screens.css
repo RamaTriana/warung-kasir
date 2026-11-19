@@ -1,0 +1,8 @@
+/* Gaya khusus layar yang tidak dipakai ulang di tempat lain */
+.brand { width: 56px; height: 56px; border-radius: var(--radius-md); background: var(--color-primary); color: var(--color-text-on-primary); display: grid; place-items: center; position: relative; overflow: hidden; }
+.brand span { font: 700 1.875rem/1 var(--font-num); }
+.brand::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: var(--color-lapak-nasi); }
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary::after { content: " ›"; }
+details[open] > summary::after { content: " ⌄"; }
