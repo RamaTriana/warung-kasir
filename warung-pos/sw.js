@@ -1,6 +1,6 @@
 // Service worker: menyimpan file aplikasi supaya tetap terbuka tanpa sinyal.
 // Naikkan VERSI setiap kali file aplikasi diubah, supaya HP mengambil versi baru.
-const VERSI = 'warung-pos-v1';
+const VERSI = 'warung-pos-v3';
 const FILES = [
   './', './index.html', './manifest.webmanifest',
   './css/tokens.css', './css/base.css', './css/components.css', './css/screens.css',
@@ -11,7 +11,7 @@ const FILES = [
   './js/screens/stok.js', './js/screens/pengeluaran.js', './js/screens/riwayat.js', './js/screens/laporan.js', './js/screens/tutup.js',
   './js/screens/lainnya.js', './js/screens/setup.js',
 ];
-self.addEventListener('install', (e) => { e.waitUntil(caches.open(VERSI).then((c) => c.addAll(FILES)).then(() => self.skipWaiting())); });
+self.addEventListener('install', (e) => { e.waitUntil(caches.open(VERSI).then((c) => c.addAll(FILES.map((f) => new Request(f, { cache: 'reload' })))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== VERSI).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
