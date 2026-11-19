@@ -4,7 +4,9 @@ import { state, simpanDevice, simpanSettings, uid, init, DEFAULT_KATEGORI } from
 import * as sync from '../sync.js';
 
 export function setupScreen(ctx) {
-  const f = { namaWarung: state.settings?.namaWarung && state.settings.namaWarung !== 'Warung' ? state.settings.namaWarung : '', nama: '', shift: null, url: '', kode: '', data: 'kosong' };
+  // Link undangan boleh membawa sambungan Google: ?url=<alamat Apps Script>&kode=<kode rahasia>
+  const undangan = new URLSearchParams(location.search);
+  const f = { namaWarung: state.settings?.namaWarung && state.settings.namaWarung !== 'Warung' ? state.settings.namaWarung : '', nama: '', shift: null, url: (undangan.get('url') || '').trim(), kode: (undangan.get('kode') || '').trim().toUpperCase(), data: 'kosong' };
   let step = 1, err = {};
   const wrap = h('div', { class: 'page', style: { paddingTop: '32px', gap: '24px' } });
 
@@ -47,6 +49,7 @@ export function setupScreen(ctx) {
       await simpanSettings({ namaWarung: f.namaWarung.trim() || 'Warung', kategori: DEFAULT_KATEGORI });
       await simpanDevice({ id: uid(), nama: f.nama.trim(), shift: f.shift, dibuat: new Date().toISOString() });
       if (f.url && f.kode) await sync.simpanKonfigurasi({ url: f.url, kode: f.kode });
+      if (location.search) history.replaceState(null, '', location.pathname + location.hash); // jangan simpan kode di alamat
       if (f.data === 'contoh') { const { isiDataContoh } = await import('../seed.js'); await isiDataContoh(); }
       if (f.data === 'pulihkan') { const n = await sync.pulihkan({ url: f.url, kode: f.kode }); toast(`${n} catatan diambil dari Google`); }
       await init();
