@@ -4,9 +4,11 @@ import { state, simpanDevice, simpanSettings, uid, init, DEFAULT_KATEGORI } from
 import * as sync from '../sync.js';
 
 export function setupScreen(ctx) {
-  // Link undangan boleh membawa sambungan Google: ?url=<alamat Apps Script>&kode=<kode rahasia>
+  // Link undangan cukup membawa ?kode=<kode rahasia>. Alamat Apps Script keluarga sudah tertanam di bawah
+  // (alamat ini bukan rahasia: tanpa kode, Apps Script menolak semua permintaan). ?url= tetap bisa menimpanya.
+  const ALAMAT_BAWAAN = 'https://script.google.com/macros/s/AKfycbxzokIG30bRZmZ4Iv76SLD6UqXZFjbbKGWqtyZoP2O5UwcD8fGmG6xDQ_AGDBnctUc_Tw/exec';
   const undangan = new URLSearchParams(location.search);
-  const f = { namaWarung: state.settings?.namaWarung && state.settings.namaWarung !== 'Warung' ? state.settings.namaWarung : '', nama: '', shift: null, url: (undangan.get('url') || '').trim(), kode: (undangan.get('kode') || '').trim().toUpperCase(), data: 'kosong' };
+  const f = { namaWarung: state.settings?.namaWarung && state.settings.namaWarung !== 'Warung' ? state.settings.namaWarung : '', nama: '', shift: null, url: (undangan.get('url') || ALAMAT_BAWAAN).trim(), kode: (undangan.get('kode') || '').trim().toUpperCase(), data: 'kosong' };
   let step = 1, err = {};
   const wrap = h('div', { class: 'page', style: { paddingTop: '32px', gap: '24px' } });
 
